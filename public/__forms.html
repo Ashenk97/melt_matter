@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Melt Matter order form</title>
+  </head>
+  <body>
+    <form
+      name="order"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="order" />
+      <input type="hidden" name="subject" value="New Melt Matter order" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="dateNeeded" />
+      <textarea name="details"></textarea>
+      <input name="bot-field" />
+    </form>
+  </body>
+</html>
