@@ -7,6 +7,7 @@ import {
   parseOrderPayload,
   validateOrderPayload,
 } from "@/lib/order";
+import { site } from "@/config/site";
 
 const EMPTY_FORM = {
   name: "",
@@ -54,9 +55,26 @@ export default function OrderContact() {
     setStatus("sending");
 
     try {
-      const isLocalHost =
-        window.location.hostname === "localhost" ||
-        window.location.hostname === "127.0.0.1";
+      const hostname = window.location.hostname;
+      const isLocalHost = hostname === "localhost" || hostname === "127.0.0.1";
+      const isGitHubPages = hostname.endsWith("github.io");
+
+      if (isGitHubPages) {
+        const body = [
+          `Name: ${payload.name}`,
+          `Email: ${payload.email}`,
+          `Phone: ${payload.phone}`,
+          `Date needed: ${payload.dateNeeded}`,
+          "",
+          payload.details,
+        ].join("\n");
+        window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(`New Melt Matter order from ${payload.name}`)}&body=${encodeURIComponent(body)}`;
+        setForm(EMPTY_FORM);
+        setFieldErrors({});
+        setStatus("success");
+        setMessage("Your email app should open with the order details. Send that message and we’ll confirm soon.");
+        return;
+      }
 
       const response = isLocalHost
         ? await fetch("/api/order", {
