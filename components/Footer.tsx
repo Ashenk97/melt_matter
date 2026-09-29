@@ -1,12 +1,13 @@
+import Link from "next/link";
 import Logo from "@/components/Logo";
 import { site } from "@/config/site";
 
 const FOOTER_LINKS = [
-  { href: "#home", label: "Home" },
-  { href: "#menu", label: "Menu" },
-  { href: "#gallery", label: "Gallery" },
-  { href: "#reviews", label: "Reviews" },
-  { href: "#contact", label: "Order" },
+  { href: "/#home", label: "Home" },
+  { href: "/menu", label: "Menu" },
+  { href: "/#gallery", label: "Gallery" },
+  { href: "/#reviews", label: "Reviews" },
+  { href: "/#contact", label: "Order" },
 ] as const;
 
 export default function Footer() {
@@ -16,9 +17,9 @@ export default function Footer() {
     <footer className="bg-chocolate-900 text-cream-200">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3 lg:px-8">
         <div>
-          <a href="#home" className="inline-block">
+          <Link href="/" className="inline-block">
             <Logo light />
-          </a>
+          </Link>
           <p className="mt-4 max-w-xs text-sm leading-6 text-cream-400">
             {site.tagline}, mixed by hand and finished with a little extra
             sweetness.
@@ -76,19 +77,19 @@ export default function Footer() {
           </ul>
           <nav aria-label="Footer" className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-sm text-cream-400">
             {FOOTER_LINKS.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="transition-colors hover:text-blush-300"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
       </div>
 
-      <div className="border-t border-chocolate-700/80 px-4 py-5 text-center text-xs tracking-wide text-cream-400 sm:px-6 lg:px-8">
+      <div className="border-t border-chocolate-700/80 px-4 pt-5 pb-[calc(6.5rem+env(safe-area-inset-bottom))] text-center md:pb-5 text-xs tracking-wide text-cream-400 sm:px-6 lg:px-8">
         © {year} {site.name}. All rights reserved.
       </div>
     </footer>

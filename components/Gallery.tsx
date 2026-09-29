@@ -8,7 +8,7 @@ export default function Gallery() {
   return (
     <section
       id="gallery"
-      className="relative scroll-mt-24 overflow-hidden bg-blush-50 py-20 sm:py-24"
+      className="relative scroll-mt-24 overflow-hidden bg-blush-50/75 py-20 sm:py-24"
     >
       <div
         className="pointer-events-none absolute -left-16 top-10 h-72 w-72 rounded-full bg-cream-200/80 blur-3xl"

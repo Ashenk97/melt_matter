@@ -26,3 +26,37 @@ body {
   background-color: #f8d0dc;
   color: #3d2314;
 }
+
+@keyframes blob-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2.5rem, -1.5rem, 0) scale(1.08);
+  }
+}
+
+.blob-drift {
+  animation: blob-drift 24s ease-in-out infinite;
+  border-radius: 42% 58% 63% 37% / 45% 40% 60% 55%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob-drift {
+    animation: none;
+  }
+}
+
+[data-announcement-dismissed] #announcement-bar {
+  display: none;
+}
+
+.sweet-sprinkles {
+  background-image:
+    radial-gradient(circle at 12px 12px, rgba(244, 184, 203, 0.7) 1.6px, transparent 1.8px),
+    radial-gradient(circle at 36px 28px, rgba(196, 164, 132, 0.45) 1.2px, transparent 1.4px),
+    radial-gradient(circle at 58px 10px, rgba(255, 248, 240, 0.9) 1.4px, transparent 1.6px),
+    radial-gradient(circle at 8px 40px, rgba(212, 132, 168, 0.35) 1px, transparent 1.2px);
+  background-size: 72px 56px;
+}

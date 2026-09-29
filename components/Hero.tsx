@@ -1,19 +1,17 @@
 import Image from "next/image";
+import RevealSection from "@/components/RevealSection";
 
 export default function Hero() {
   return (
-    <section
+    <RevealSection
       id="home"
-      className="relative overflow-hidden scroll-mt-24 bg-cream-200"
+      animateOnMount
+      className="relative scroll-mt-24 bg-cream-200/75"
     >
-      <div
-        className="pointer-events-none absolute -left-24 top-0 h-80 w-80 rounded-full bg-blush-200/70 blur-3xl"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute -right-16 bottom-0 h-96 w-96 rounded-full bg-caramel-light/50 blur-3xl"
-        aria-hidden="true"
-      />
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute -left-24 top-0 h-80 w-80 rounded-full bg-blush-200/70 blur-3xl" />
+        <div className="absolute -right-16 bottom-0 h-96 w-96 rounded-full bg-caramel-light/50 blur-3xl" />
+      </div>
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:py-24 lg:px-8">
         <div className="max-w-xl text-center lg:text-left">
@@ -60,6 +58,6 @@ export default function Hero() {
           </figcaption>
         </figure>
       </div>
-    </section>
+    </RevealSection>
   );
 }
