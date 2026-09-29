@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import ElfsightWidget from "@/components/ElfsightWidget";
 import ElfsightPlatformScript from "@/components/ElfsightPlatformScript";
 import { instagramWidgetId } from "@/config/community-widgets";
+import { GALLERY_PHOTOS } from "@/config/testimonials";
 
 export default function Gallery() {
   return (
@@ -29,16 +31,37 @@ export default function Gallery() {
           </p>
         </header>
 
-        <div
-          id="instagram-feed-widget"
-          className="overflow-hidden rounded-[1.75rem] bg-cream-50 p-3 shadow-soft ring-1 ring-chocolate-100/80 sm:p-4"
-        >
-          <ElfsightWidget
-            appId={instagramWidgetId}
-            label="Instagram feed"
-            description="Paste your Elfsight Instagram embed into config/community-widgets.ts to show our latest bakes here."
-          />
-        </div>
+        {instagramWidgetId ? (
+          <div
+            id="instagram-feed-widget"
+            className="overflow-hidden rounded-[1.75rem] bg-cream-50 p-3 shadow-soft ring-1 ring-chocolate-100/80 sm:p-4"
+          >
+            <ElfsightWidget
+              appId={instagramWidgetId}
+              label="Instagram feed"
+              description="Our latest bakes will appear here."
+            />
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
+            {GALLERY_PHOTOS.map((photo, index) => (
+              <div
+                key={photo.src}
+                className={`group relative overflow-hidden rounded-[1.5rem] bg-cream-300 shadow-soft ring-1 ring-chocolate-100/60 ${
+                  index === 0 ? "row-span-2" : "aspect-square"
+                }`}
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  className="object-cover transition duration-700 ease-out group-hover:scale-105"
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <ElfsightPlatformScript enabled={Boolean(instagramWidgetId)} />
