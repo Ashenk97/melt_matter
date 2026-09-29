@@ -65,9 +65,9 @@ export default function OrderForm({
     try {
       const hostname = window.location.hostname;
       const isLocalHost = hostname === "localhost" || hostname === "127.0.0.1";
-      const isGitHubPages = hostname.endsWith("github.io");
+      const useMailto = hostname.endsWith("github.io") || hostname.endsWith("vercel.app");
 
-      if (isGitHubPages) {
+      if (useMailto) {
         const body = [
           `Name: ${payload.name}`,
           `Email: ${payload.email}`,
